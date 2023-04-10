@@ -4,7 +4,9 @@ import scipy.stats
 
 
 def test_column_names(data):
-
+    """
+    Test that the input dataset has all expected columns
+    """
     expected_colums = [
         "id",
         "name",
@@ -31,7 +33,9 @@ def test_column_names(data):
 
 
 def test_neighborhood_names(data):
-
+    """
+    Test that the set of neighborhood names in the dataset matches the expected set
+    """
     known_names = ["Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island"]
 
     neigh = set(data['neighbourhood_group'].unique())
@@ -61,8 +65,14 @@ def test_similar_neigh_distrib(data: pd.DataFrame, ref_data: pd.DataFrame, kl_th
 
 
 def test_row_count(data):
+    """
+    Test that the row count of the dataset is within the expected range
+    """
     assert 15000 < data.shape[0] < 1000000
 
 
 def test_price_range(data, min_price, max_price):
+    """
+    Test that all prices are within the range specified by input parameters
+    """
     assert data['price'].between(min_price, max_price).all()
